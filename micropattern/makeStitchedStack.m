@@ -1,5 +1,9 @@
 function makeStitchedStack(dataDir, meta, upperleft, wells, margin, separatez)
 
+    stackDir = fullfile(dataDir, 'stitchedHyperstacks');
+    if ~exist(stackDir, 'dir')
+        mkdir(stackDir);
+    end
     if ~exist('wells','var')
         wells = 1:meta.nWells;
     end
@@ -86,11 +90,11 @@ function makeStitchedStack(dataDir, meta, upperleft, wells, margin, separatez)
                         stitchedp(1:ymax-margin,1:xmax-margin) = stitched(ymin:ymax,xmin:xmax);
 
                         if ~separatez && ti==1 && zi==0
-                            imwrite(stitchedp, fullfile(dataDir,outfname));
+                            imwrite(stitchedp, fullfile(stackDir,outfname));
                         elseif separatez && ti==1
-                            imwrite(stitchedp, fullfile(dataDir,outfname));
+                            imwrite(stitchedp, fullfile(stackDir,outfname));
                         else
-                            imwrite(stitchedp, fullfile(dataDir,outfname), 'WriteMode','Append');
+                            imwrite(stitchedp, fullfile(stackDir,outfname), 'WriteMode','Append');
                         end
                     end
                 end
