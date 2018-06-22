@@ -218,7 +218,7 @@ classdef Position < handle
                 % convention with barefname the dataDir name, which is 
                 % one level above /MIP
                 s = strsplit(dataDir,filesep);
-                barefname{1} = sprintf([s{1}  '_MIP_p%.4d'], this.ID-1);
+                barefname{1} = sprintf([s{end-1}  '_MIP_p%.4d'], this.ID-1);
 
                 s = strsplit(this.filename,'_.%\.4d|\.','DelimiterType','RegularExpression');            
                 barefname{2} = s{1};
